@@ -33,8 +33,10 @@ export default async function AdminPage() {
 
       {!blobConfigured && (
         <p className="mt-6 rounded-lg border border-accent/40 bg-accent/10 px-4 py-3 text-sm text-foreground">
-          No Blob store connected — <code className="font-mono text-xs">BLOB_READ_WRITE_TOKEN</code>{" "}
-          is not set. Uploading and saving is disabled until it is. See the
+          No Blob store connected — neither{" "}
+          <code className="font-mono text-xs">BLOB_READ_WRITE_TOKEN</code> nor{" "}
+          <code className="font-mono text-xs">BLOB_STORE_ID</code> is set.
+          Uploading and saving is disabled until one is. See the
           &ldquo;Set up Vercel Blob&rdquo; section in the README.
         </p>
       )}

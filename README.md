@@ -7,21 +7,23 @@ dashboard for uploading new work.
 
 ## Set up Vercel Blob
 
-1. In the [Vercel dashboard](https://vercel.com/dashboard), open this project (or create it) → **Storage** → **Create Database** → **Blob**.
-2. Pull the generated token down locally:
-   ```bash
-   npm i -g vercel   # if you don't have it
-   vercel link        # first time only, links this folder to the Vercel project
-   vercel env pull .env.local
-   ```
-   This writes `BLOB_READ_WRITE_TOKEN` into `.env.local`.
-3. Add an admin password: open `.env.local` and set
+1. In the [Vercel dashboard](https://vercel.com/dashboard), open this project (or create it) → **Storage** → **Create Database** → **Blob**, and connect it to the project.
+2. Vercel wires the connection up one of two ways, and the app supports both automatically:
+   - **Current default:** it sets `BLOB_STORE_ID` (+ `BLOB_WEBHOOK_PUBLIC_KEY`) on the project, and injects a short-lived OIDC token at runtime — no static secret to copy anywhere. Once connected, production just works with nothing further to do.
+   - **Classic:** a long-lived `BLOB_READ_WRITE_TOKEN` — also supported, if that's what your store was set up with.
+3. Add an admin password as a project Environment Variable (Settings → Environment Variables):
    ```
    ADMIN_PASSWORD=something-only-you-know
    ```
-   Then add the same `ADMIN_PASSWORD` value as an Environment Variable on the Vercel project (Settings → Environment Variables) so it also works in production.
 
-See `.env.local.example` for the full list.
+### Local development against real Blob data
+
+The OIDC token above is minted per-request by Vercel's runtime, so it isn't something you can `pull` into a static `.env.local` for regular `next dev`. Two options:
+
+- **Easiest:** run `vercel dev` instead of `npm run dev` — it proxies real project env vars and OIDC credentials, so uploads/saves work exactly like production.
+- **Or:** generate a classic `BLOB_READ_WRITE_TOKEN` from the store's page in the dashboard and put it in `.env.local` (see `.env.local.example`) for use with plain `npm run dev`.
+
+Either way, `npm run dev` still works fine without any of this — `/admin` just shows a "no Blob store connected" banner and disables the form until one of the above is set up.
 
 ## Develop
 

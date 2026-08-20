@@ -15,16 +15,24 @@ export type Project = {
 
 const PROJECTS_PATHNAME = "data/projects.json";
 
-/** Whether a Blob store is connected. Use to show setup guidance in /admin. */
+/**
+ * Whether a Blob store is connected. Use to show setup guidance in /admin.
+ * Vercel connects a store to a project one of two ways: a classic
+ * BLOB_READ_WRITE_TOKEN, or (the current default) BLOB_STORE_ID paired
+ * with a short-lived OIDC token that Vercel injects automatically at
+ * runtime — the SDK picks whichever is present on its own, so either env
+ * var being set means uploads/saves will work.
+ */
 export function isBlobConfigured(): boolean {
-  return Boolean(process.env.BLOB_READ_WRITE_TOKEN);
+  return Boolean(
+    process.env.BLOB_READ_WRITE_TOKEN || process.env.BLOB_STORE_ID,
+  );
 }
 
 /**
  * Reads the project list from Vercel Blob. Returns an empty array if the
- * store hasn't been configured yet (no BLOB_READ_WRITE_TOKEN) or nothing
- * has been saved yet — callers should treat both as "no projects yet"
- * rather than an error.
+ * store hasn't been configured yet or nothing has been saved yet —
+ * callers should treat both as "no projects yet" rather than an error.
  */
 export async function getProjects(): Promise<Project[]> {
   try {
