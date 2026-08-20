@@ -1,23 +1,12 @@
-export type Project = {
-  /** Unique, URL-safe identifier. */
-  slug: string;
-  title: string;
-  /** Short one-line caption shown under the image in the grid. */
-  caption: string;
-  /** Optional longer description for a detail view. */
-  description?: string;
-  year: string;
-  tags?: string[];
-  image: string;
-  imageAlt: string;
-  /** Intrinsic size of the source image, for layout stability. */
-  width: number;
-  height: number;
-};
+import type { Project } from "@/lib/projects";
 
-// Replace the entries below with your own work. Drop images in
-// `public/images/` and point `image` at `/images/your-file.jpg`.
-export const projects: Project[] = [
+/**
+ * Seed content for the admin dashboard's "Load sample projects" button —
+ * points at the placeholder SVGs in public/images so there's something to
+ * look at before you've uploaded real work. Only ever written to the store
+ * when it's empty; delete these from /admin once you've added your own.
+ */
+export const SAMPLE_PROJECTS: Project[] = [
   {
     slug: "field-notes",
     title: "Field Notes",
@@ -26,8 +15,6 @@ export const projects: Project[] = [
     tags: ["Photography"],
     image: "/images/project-1.svg",
     imageAlt: "Placeholder artwork for Field Notes",
-    width: 1200,
-    height: 900,
   },
   {
     slug: "signal",
@@ -37,8 +24,6 @@ export const projects: Project[] = [
     tags: ["Branding", "Packaging"],
     image: "/images/project-2.svg",
     imageAlt: "Placeholder artwork for Signal",
-    width: 1200,
-    height: 900,
   },
   {
     slug: "undertow",
@@ -48,8 +33,6 @@ export const projects: Project[] = [
     tags: ["Motion", "Code"],
     image: "/images/project-3.svg",
     imageAlt: "Placeholder artwork for Undertow",
-    width: 1200,
-    height: 900,
   },
   {
     slug: "paper-trail",
@@ -59,8 +42,6 @@ export const projects: Project[] = [
     tags: ["Editorial", "Type"],
     image: "/images/project-4.svg",
     imageAlt: "Placeholder artwork for Paper Trail",
-    width: 1200,
-    height: 900,
   },
   {
     slug: "nocturne",
@@ -70,8 +51,6 @@ export const projects: Project[] = [
     tags: ["Photography"],
     image: "/images/project-5.svg",
     imageAlt: "Placeholder artwork for Nocturne",
-    width: 1200,
-    height: 900,
   },
   {
     slug: "glasswork",
@@ -81,7 +60,5 @@ export const projects: Project[] = [
     tags: ["Product", "Design System"],
     image: "/images/project-6.svg",
     imageAlt: "Placeholder artwork for Glasswork",
-    width: 1200,
-    height: 900,
   },
 ];

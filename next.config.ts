@@ -14,6 +14,13 @@ const nextConfig: NextConfig = {
     dangerouslyAllowSVG: true,
     contentDispositionType: "inline",
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
+    remotePatterns: [
+      {
+        protocol: "https",
+        // Every Vercel Blob store gets its own subdomain of this form.
+        hostname: "*.public.blob.vercel-storage.com",
+      },
+    ],
   },
 };
 

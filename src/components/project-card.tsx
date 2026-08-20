@@ -1,5 +1,5 @@
 import Image from "next/image";
-import type { Project } from "@/data/projects";
+import type { Project } from "@/lib/projects";
 
 export function ProjectCard({ project }: { project: Project }) {
   return (
@@ -8,9 +8,8 @@ export function ProjectCard({ project }: { project: Project }) {
         <Image
           src={project.image}
           alt={project.imageAlt}
-          width={project.width}
-          height={project.height}
-          className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
+          fill
+          className="object-cover transition-transform duration-500 ease-out group-hover:scale-105"
           sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
         />
       </div>
