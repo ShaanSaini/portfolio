@@ -1,36 +1,54 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Portfolio
 
-## Getting Started
+A simple image + caption portfolio site.
 
-First, run the development server:
+**Stack:** Next.js (App Router) · TypeScript · Tailwind CSS v4 · Space Grotesk / Inter / JetBrains Mono · deployed on Vercel.
+
+## Develop
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Edit content
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+All portfolio entries live in one file: `src/data/projects.ts`. Each entry is a plain object — no CMS, no database:
 
-## Learn More
+```ts
+{
+  slug: "field-notes",
+  title: "Field Notes",
+  caption: "A visual survey of coastal light, shot over one winter.",
+  year: "2025",
+  tags: ["Photography"],
+  image: "/images/field-notes.jpg",
+  imageAlt: "…",
+  width: 1200,
+  height: 900,
+}
+```
 
-To learn more about Next.js, take a look at the following resources:
+To add a project:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Drop the image file in `public/images/`.
+2. Add an entry to the `projects` array in `src/data/projects.ts` pointing `image` at it, with the real `width`/`height` of the file (needed to prevent layout shift).
+3. Commit and push — Vercel redeploys automatically.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+The six sample entries currently point at generated placeholder SVGs — replace them with your own photos/artwork.
 
-## Deploy on Vercel
+Site identity (name, intro copy, about text, contact links) lives directly in:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- `src/app/page.tsx` — hero + about copy
+- `src/components/site-header.tsx` — site name
+- `src/components/site-footer.tsx` — contact links, copyright
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Brand tokens
+
+Color and font tokens are defined once in `src/app/globals.css` (dark-mode-first) and fonts are loaded via `next/font/google` in `src/app/layout.tsx`. Change a token there and it updates everywhere.
+
+## Deploy
+
+Push to a GitHub repo and [import it on Vercel](https://vercel.com/new) — zero config needed. No database or extra backend service is required for this site.
