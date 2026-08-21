@@ -1,7 +1,7 @@
 const socials = [
-  { label: "Email", href: "mailto:you@example.com" },
-  { label: "GitHub", href: "https://github.com/yourhandle" },
-  { label: "LinkedIn", href: "https://linkedin.com/in/yourhandle" },
+  { label: "Email", href: "mailto:shaanksaini@gmail.com" },
+  { label: "GitHub", href: "https://github.com/ShaanSaini" },
+  { label: "LinkedIn", href: "https://linkedin.com/in/ShaanSaini" },
 ];
 
 export function SiteFooter() {
