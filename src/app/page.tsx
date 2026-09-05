@@ -15,7 +15,7 @@ export default function Home() {
           <p className="mt-6 max-w-xl text-base leading-relaxed text-muted">
             I&apos;m Your Name — a short line about what you do, who you do
             it for, and what makes your work distinct. Replace this with
-            your own introduction.
+          your own introduction.
           </p>
         </section>
 
@@ -30,6 +30,8 @@ export default function Home() {
               Write a few sentences about your background, how you work, and
               what you&apos;re looking for next. Keep it short — this section
               is a supplement to the work above, not a replacement for it.
+
+              Freelance Software Engineer
             </p>
           </div>
         </section>
